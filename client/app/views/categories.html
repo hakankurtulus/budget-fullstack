@@ -1,0 +1,47 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                   <li><a href="index.html">Home</a></li>
+                   <li class="active">Categories</li>
+               </ul>
+            </div>
+        </div>
+        <div class="row row-content">
+            <div class="col-xs-12"><!-- content goes here-->
+                <form class="form-horizontal" name="addCategoryForm">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="text" class="form-control" placeholder="Category Name" ng-model="category.name" required/>
+                        </div>
+                        <div class="col-xs-3">
+                            <input type="text" class="form-control" placeholder="Category Description" ng-model="category.description"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="submit" class="btn btn-primary" ng-disabled="categoryForm.$invalid" ng-click="addCategory(category)">Add Category</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-12">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Category Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="category in categories">
+                        <td>{{category.name}}</td>
+                        <td>{{category.description}}</td>
+                        <td><button type="submit" class="btn btn-danger btn-xs" ng-click="deleteCategory(category._id)">Delete</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>

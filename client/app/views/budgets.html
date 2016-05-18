@@ -1,0 +1,58 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                   <li><a href="index.html">Home</a></li>
+                   <li class="active">Budgets</li>
+               </ul>
+            </div>
+        </div>
+        <div class="row row-content">
+            <div class="col-xs-12"><!-- content goes here-->
+                <form class="form-horizontal" name="addBudgetForm">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="text" class="form-control" placeholder="Budget Name" ng-model="budget.name" required/>
+                        </div>
+                        <div class="col-xs-3">
+                            <input type="text" class="form-control" placeholder="Budget Description" ng-model="budget.description"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <select class="form-control" ng-model="budget.currency" required>
+                                <option>$</option>
+                                <option>€</option>
+                                <option>£</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="submit" class="btn btn-primary" ng-disabled="budgetForm.$invalid" ng-click="addBudget(budget)">Add Budget</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-12">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>Budget Name</th>
+                        <th>Budget Description</th>
+                        <th>Balance</th>
+                        <th>View Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="budget in budgets">
+                        <td>{{budget.name}}</td>
+                        <td>{{budget.description}}</td>
+                        <td>{{budget.currency}} {{budget.balance}}</td>
+                        <td><a href="#/budgets/{{budget._id}}"><button type="submit" class="btn btn-success btn-xs">Details</button></a> <button type="submit" class="btn btn-danger btn-xs" ng-click="deleteBudget(budget._id)">Delete</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>

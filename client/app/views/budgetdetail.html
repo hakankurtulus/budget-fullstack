@@ -1,0 +1,72 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="index.html#/budgets">Budget</a></li>
+                   <li class="active">Budget Details</li>
+               </ul>
+            </div>
+        </div>
+
+        <div class="row row-content">
+
+            <h1>{{budget.name}} Budget</h1>
+
+            <p class="lead">Budget Balance: {{budget.currency}} {{budget.balance}}</p>
+
+            <form name="addRecordForm">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <input type="text" class="form-control" placeholder="Amount" ng-model="record.amount" required/>
+                    </div>
+                    <div class="col-xs-2">
+                        <select class="form-control" ng-model="record.type" placeholder="Type" >
+                            <option value="">Select Type</option>
+                            <option value="0">Expense</option>
+                            <option value="1">Income</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3">
+                        <select class="form-control" ng-model="record.category" placeholder="Category" >
+                            <option value="">Select Category</option>
+                            <option ng-repeat="category in categories">{{category.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" placeholder="Description" ng-model="record.description">
+                    </div>
+                    <div class="col-xs-2">
+                        <button type="submit" class="btn btn-primary" ng-click="addRecord(record)">Add</button>
+                    </div>
+                </div>
+            </form>
+
+            <h1>History</h1>
+
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="record in budget.records | orderBy:'category':!reverse" class="{{ record.is_expense ? 'danger' : 'success'}}">
+                    <td>{{record.category}}</td>
+                    <td>{{record.is_expense ? 'Expense' : 'Income'}}</td>
+                    <td>{{record.description}}</td>
+                    <td>{{budget.currency}} {{record.amount}}</td>
+                    <td><button type="submit" class="btn btn-danger btn-xs" ng-click="deleteRecord(record)">Delete</button></td>
+                </tr>
+                </tbody>
+            </table>
+            <canvas id="canvas" height="450" width="450"></canvas>
+
+        </div>
+
+    </div>
